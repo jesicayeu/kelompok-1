@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Website E-commerce</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Bagian Breadcrumb Mulai -->
+    <section class="py-5" style="background-image: url('img/breadcrumb.jpg'); background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="mb-3 text-white">Detail Toko</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="./index.html" class="text-white">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="./index.html" class="text-white">Detail</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Beli</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bagian Breadcrumb Selesai -->
+
+    <!-- Bagian Detail Produk Mulai -->
+    <section class="py-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <img src="img/product/details/product-details-1.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h3 class="mb-3">Paket Sayuran</h3>
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                        <span class="ms-2">(18 ulasan)</span>
+                    </div>
+                    <h4 class="mb-3" id="productPrice">Rp 150.000</h4>
+                    <p class="mb-4">Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                    <div class="d-flex align-items-center mb-4">
+                        <button class="btn btn-outline-secondary me-2" onclick="decrementValue()">-</button>
+                        <input type="number" id="quantity" class="form-control text-center" style="width: 70px;" value="1" min="1" readonly>
+                        <button class="btn btn-outline-secondary ms-2 me-3" onclick="incrementValue()">+</button>
+                        <a href="#" class="btn btn-primary me-3" onclick="addToCart()">BELI</a>
+                        <a href="#" class="btn btn-outline-secondary"><i class="far fa-heart"></i></a>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><strong>Ketersediaan:</strong> Tersedia</li>
+                        <li class="mb-2"><strong>Pengiriman:</strong> 1 hari pengiriman. <span class="text-muted">Gratis pengambilan hari ini</span></li>
+                        <li class="mb-2"><strong>Berat:</strong> 0,5 kg</li>
+                        <li>
+                            <strong>Bagikan di:</strong>
+                            <a href="#" class="text-dark me-2"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-dark me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-dark me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-dark"><i class="fab fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-12 mt-5">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Deskripsi</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                            <h6 class="mb-3">Informasi Produk</h6>
+                            <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
+                            <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bagian Detail Produk Selesai -->
+
+    <!-- Bagian Footer Mulai -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4>Politeknik Amamapare</h4>
+                    <ul class="list-unstyled">
+                        <li>Alamat: Jln. Baru Timika Papua</li>
+                        <li>Telepon: +62 85230047347</li>
+                        <li>Email: PAT@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h6>Kelompok 1</h6>
+                    <ul class="list-unstyled">
+                        <li>Alfonsina Hungan - 22512001</li>
+                        <li>Bana Isterina Neslaka - 22512002</li>
+                        <li>Gabriel Rutu - 22512003</li>
+                        <li>Jesica Yeuyanan - 22512004</li>
+                        <li>Sarci Aprilia Rahayaan - 22512005</li>
+                        <li>Seravina Nuryanti Juita - 22512006</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h6>Manajemen Proyek</h6>
+                    <p>Teknologi Rekayasa Internet</p>
+                    <p>Semester 5</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bagian Footer Selesai -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function incrementValue() {
+            var value = parseInt(document.getElementById('quantity').value, 10);
+            value = isNaN(value) ? 0 : value;
+            value++;
+            document.getElementById('quantity').value = value;
+            updatePrice();
+        }
+        
+        function decrementValue() {
+            var value = parseInt(document.getElementById('quantity').value, 10);
+            value = isNaN(value) ? 0 : value;
+            value < 2 ? value = 1 : value--;
+            document.getElementById('quantity').value = value;
+            updatePrice();
+        }
+
+        function updatePrice() {
+            var quantity = parseInt(document.getElementById('quantity').value, 10);
+            var basePrice = 150000; // Harga dasar dalam rupiah
+            var totalPrice = quantity * basePrice;
+            document.getElementById('productPrice').innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
+        }
+
+        function addToCart() {
+            var quantity = document.getElementById('quantity').value;
+            var price = document.getElementById('productPrice').innerText.replace('Rp ', '').replace(/\./g, '');
+            var totalPrice = parseInt(price);
+            var productName = document.querySelector('h3').innerText;
+            var productImage = document.querySelector('img').src;
+            
+            // Simpan data ke localStorage
+            localStorage.setItem('cartQuantity', quantity);
+            localStorage.setItem('cartPrice', totalPrice);
+            localStorage.setItem('cartName', productName);
+            localStorage.setItem('cartImage', productImage);
+            
+            // Redirect ke halaman keranjang
+            window.location.href = 'shoping-cart.html?nama=' + productName + '&harga=' + totalPrice + '&jumlah=' + quantity + '&gambar=' + productImage;
+        }
+    </script>
+</body>
+
+</html>  
