@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Website E-commerce</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Bagian Breadcrumb Mulai -->
+    <section class="py-5" style="background-image: url('../img/banner/banner6.jpg'); background-size: cover; background-position: center; background-size: cover; padding: 100px 0; color: white; text-shadow: 2px 2px 4px #7e7e7e88;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="mb-3 text-white">Detail Bunga</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="../index.html" class="text-white">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="../index.html" class="text-white">Detail</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bagian Breadcrumb Selesai -->
+
+    <!-- Bagian Detail Produk Mulai -->
+    <section class="py-5 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <img src="../img/Bunga_Kering/Kering-pampas.webp" alt="" width="100%" height="100%" class="img-fluid">
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h3 class="mb-3">Bunga Phalaris</h3>
+                    <div class="mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                        <span class="ms-2">(18 ulasan)</span>
+                    </div>
+                    <h4 class="mb-3" id="productPrice">Rp 20.000</h4>
+                    <p class="mb-4">Bunga kering phalaris, atau sering disebut sebagai "bunga bulir" atau "bunga jerami," berasal dari tanaman Phalaris yang dikenal karena bentuknya yang unik dan menarik. Ketika dikeringkan, bunga ini memiliki penampilan yang khas dengan bulir-bulir ramping yang berdiri tegak, sering kali menyerupai bulu-bulu halus.</p>
+                    <div class="d-flex align-items-center mb-4">
+                        <a href="#" class="btn btn-primary me-3" onclick="addToCart()">BELI</a>
+                        <a href="#" class="btn btn-outline-secondary"><i class="far fa-heart"></i></a>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><strong>Ketersediaan:</strong> Tersedia</li>
+                        <li class="mb-2"><strong>Pengiriman:</strong> 1 hari pengiriman. <span class="text-muted">Gratis pengambilan hari ini</span></li>
+                        <li class="mb-2"><strong>Berat:</strong> 0,5 kg</li>
+                        <li>
+                            <strong>Bagikan di:</strong>
+                            <a href="#" class="text-dark me-2"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-dark me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-dark me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-dark"><i class="fab fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-12 mt-5">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Deskripsi</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                            <h6 class="mb-3">Informasi Produk</h6>
+                            <p>Bunga phalaris kering biasanya memiliki warna yang bervariasi, mulai dari hijau, kuning, hingga cokelat. Teksturnya kaku dan agak renyah, dengan penampilan yang elegan dan alami. Bentuknya yang ramping dan tinggi membuatnya sangat cocok untuk digunakan dalam rangkaian bunga kering atau sebagai dekorasi.</p>
+                            <p>Salah satu daya tarik dari bunga kering phalaris adalah kemampuannya untuk menambah dimensi dan tekstur pada komposisi floral. Bunga ini sering digunakan dalam dekorasi interior, kerajinan tangan, atau sebagai aksesoris dalam karangan bunga.</p>
+                            <p>Kelebihan bunga phalaris kering adalah daya tahannya yang lama, sehingga dapat bertahan berbulan-bulan bahkan bertahun-tahun tanpa kehilangan keindahannya. Dengan karakteristik yang unik dan penampilan yang menarik, bunga phalaris kering menjadi pilihan populer bagi mereka yang ingin menambahkan sentuhan alami dan estetika pada ruang mereka.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bagian Detail Produk Selesai -->
+
+    <!-- Footer Section Begin -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4>Politeknik Amamapare</h4>
+                    <ul class="list-unstyled">
+                        <li>Alamat: Jln. Baru Timika Papua</li>
+                        <li>Telepon: +62 85230047347</li>
+                        <li>Email: PAT@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h6>Kelompok 1</h6>
+                    <ul class="list-unstyled">
+                        <li>Alfonsina Hungan - 22512003</li>
+                        <li>Bana Isterina Neslaka - 22512008</li>
+                        <li>Gabriel Rutu - 22512016</li>
+                        <li>Jesica Yeuyanan - 22512019</li>
+                        <li>Sarci Aprilia Rahanyaan - 22512042</li>
+                        <li>Seravina Nuryanti Juita - 22512044</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h6>Manajemen Proyek</h6>
+                    <p>Teknologi Rekayasa Internet</p>
+                    <p>Semester 5</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function addToCart() {
+    var totalPrice = 20000;
+    var productName = document.querySelector('h3').innerText;
+    var productImage = document.querySelector('img').src;
+    var productQuantity = 1;
+
+    // Ambil data keranjang dari localStorage
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Periksa apakah produk sudah ada di keranjang
+    var existingProduct = cart.find(function(item) {
+        return item.name === productName;
+    });
+
+    if (existingProduct) {
+        // Jika produk sudah ada, tambahkan jumlah
+        existingProduct.quantity += productQuantity;
+    } else {
+        // Jika produk belum ada, tambahkan produk baru ke keranjang
+        cart.push({
+            name: productName,
+            price: totalPrice,
+            image: productImage,
+            quantity: productQuantity
+        });
+    }
+
+    // Simpan kembali data keranjang ke localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Redirect ke halaman keranjang dengan data produk
+    window.location.href = '../shoping-cart.html?nama=' + encodeURIComponent(productName) + '&harga=' + totalPrice + '&jumlah=' + productQuantity + '&gambar=' + encodeURIComponent(productImage);
+}
+
+    </script>
+</body>
+
+</html>
