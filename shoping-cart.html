@@ -8,13 +8,15 @@
     <title>Website E-commerce</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
     <!-- Bagian Breadcrumb Mulai -->
-    <section class="py-5" style="background-image: url('img/breadcrumb.jpg'); background-size: cover; background-position: center;">
+    <section class="py-5" style="background-image: url('img/header/header\ \(2\).jpg'); background-size: cover; background-position: center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -78,7 +80,7 @@
     </section>
     <!-- Bagian Keranjang Belanja Selesai -->
 
-    <!-- Bagian Footer Mulai -->
+    <!-- Footer Section Begin -->
     <footer class="bg-dark text-light py-5">
         <div class="container">
             <div class="row">
@@ -93,12 +95,12 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <h6>Kelompok 1</h6>
                     <ul class="list-unstyled">
-                        <li>Alfonsina Hungan - 22512001</li>
-                        <li>Bana Isterina Neslaka - 22512002</li>
-                        <li>Gabriel Rutu - 22512003</li>
-                        <li>Jesica Yeuyanan - 22512004</li>
-                        <li>Sarci Aprilia Rahayaan - 22512005</li>
-                        <li>Seravina Nuryanti Juita - 22512006</li>
+                        <li>Alfonsina Hungan - 22512003</li>
+                        <li>Bana Isterina Neslaka - 22512008</li>
+                        <li>Gabriel Rutu - 22512016</li>
+                        <li>Jesica Yeuyanan - 22512019</li>
+                        <li>Sarci Aprilia Rahanyaan - 22512042</li>
+                        <li>Seravina Nuryanti Juita - 22512044</li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-12">
@@ -115,25 +117,29 @@
             </div>
         </div>
     </footer>
-    <!-- Bagian Footer Selesai -->
+    <!-- Footer Section End -->
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Script untuk mengambil data produk dan menghitung total -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script untuk menangani keranjang belanja -->
     <script>
-        // Mengambil data produk dari URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const produkData = [];
-        urlParams.forEach((value, key) => {
-            if (key === 'nama') {
-                produkData.push({
-                    nama: value,
-                    harga: parseInt(urlParams.get('harga')),
-                    jumlah: parseInt(urlParams.get('jumlah')),
-                    gambar: urlParams.get('gambar')
-                });
-            }
-        });
+// Mengambil data produk dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+let produkData = JSON.parse(localStorage.getItem('produkData')) || [];
+
+
+        // Memasukkan data dari URL ke dalam array produk
+        if (urlParams.get('nama')) {
+            produkData.push({
+                nama: urlParams.get('nama'),
+                harga: parseInt(urlParams.get('harga')),
+                jumlah: parseInt(urlParams.get('jumlah')) || 1,
+                gambar: urlParams.get('gambar')
+            });
+            localStorage.setItem('produkData', JSON.stringify(produkData)); // Simpan ke Local Storage
+        }
 
         // Fungsi untuk menghitung total harga
         function hitungTotal() {
@@ -144,40 +150,12 @@
             return total;
         }
 
-        // Menampilkan data produk di tabel
-        produkData.forEach(produk => {
-            document.getElementById('keranjang-belanja').innerHTML += `
-                <tr>
-                    <td>
-                        <img src="${produk.gambar}" alt="" class="img-fluid" style="max-width: 100px;">
-                        <span class="ms-3">${produk.nama}</span>
-                    </td>
-                    <td>Rp ${produk.harga}</td>
-                    <td>
-                        <div class="input-group" style="max-width: 120px;">
-                            <button class="btn btn-outline-secondary" type="button" onclick="kurangiJumlah(${produkData.indexOf(produk)})">-</button>
-                            <input type="text" class="form-control text-center" value="${produk.jumlah}" oninput="ubahJumlah(${produkData.indexOf(produk)}, this.value)">
-                            <button class="btn btn-outline-secondary" type="button" onclick="tambahJumlah(${produkData.indexOf(produk)})">+</button>
-                        </div>
-                    </td>
-                    <td>Rp ${produk.harga * produk.jumlah}</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-danger" onclick="hapusProduk(${produkData.indexOf(produk)})"><i class="fas fa-times"></i></button>
-                    </td>
-                </tr>
-            `;
-        });
-
-        // Menampilkan total harga di footer
-        document.getElementById('subtotal').textContent = `Rp ${hitungTotal()}`;
-        document.getElementById('total').textContent = `Rp ${hitungTotal()}`;
-
-        // Fungsi untuk menghapus produk dari keranjang
-        function hapusProduk(index) {
-            produkData.splice(index, 1);
-            document.getElementById('keranjang-belanja').innerHTML = '';
-            produkData.forEach(produk => {
-                document.getElementById('keranjang-belanja').innerHTML += `
+        // Fungsi untuk menampilkan produk di keranjang
+        function renderKeranjangBelanja() {
+            const tbody = document.getElementById('keranjang-belanja');
+            tbody.innerHTML = ''; // Kosongkan tabel sebelum mengisi ulang
+            produkData.forEach((produk, index) => {
+                tbody.innerHTML += `
                     <tr>
                         <td>
                             <img src="${produk.gambar}" alt="" class="img-fluid" style="max-width: 100px;">
@@ -186,120 +164,42 @@
                         <td>Rp ${produk.harga}</td>
                         <td>
                             <div class="input-group" style="max-width: 120px;">
-                                <button class="btn btn-outline-secondary" type="button" onclick="kurangiJumlah(${produkData.indexOf(produk)})">-</button>
-                                <input type="text" class="form-control text-center" value="${produk.jumlah}" oninput="ubahJumlah(${produkData.indexOf(produk)}, this.value)">
-                                <button class="btn btn-outline-secondary" type="button" onclick="tambahJumlah(${produkData.indexOf(produk)})">+</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="ubahJumlah(${index}, -1)">-</button>
+                                <input type="text" class="form-control text-center" value="${produk.jumlah}" readonly>
+                                <button class="btn btn-outline-secondary" type="button" onclick="ubahJumlah(${index}, 1)">+</button>
                             </div>
                         </td>
                         <td>Rp ${produk.harga * produk.jumlah}</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-danger" onclick="hapusProduk(${produkData.indexOf(produk)})"><i class="fas fa-times"></i></button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="hapusProduk(${index})"><i class="fas fa-times"></i></button>
                         </td>
                     </tr>
                 `;
             });
-            document.getElementById('subtotal').textContent = `Rp ${hitungTotal()}`;
-            document.getElementById('total').textContent = `Rp ${hitungTotal()}`;
-        }
 
-        // Fungsi untuk mengurangi jumlah produk
-        function kurangiJumlah(index) {
-            if (produkData[index].jumlah > 1) {
-                produkData[index].jumlah--;
-                document.getElementById('keranjang-belanja').innerHTML = '';
-                produkData.forEach(produk => {
-                    document.getElementById('keranjang-belanja').innerHTML += `
-                        <tr>
-                            <td>
-                                <img src="${produk.gambar}" alt="" class="img-fluid" style="max-width: 100px;">
-                                <span class="ms-3">${produk.nama}</span>
-                            </td>
-                            <td>Rp ${produk.harga}</td>
-                            <td>
-                                <div class="input-group" style="max-width: 120px;">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="kurangiJumlah(${produkData.indexOf(produk)})">-</button>
-                                    <input type="text" class="form-control text-center" value="${produk.jumlah}" oninput="ubahJumlah(${produkData.indexOf(produk)}, this.value)">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="tambahJumlah(${produkData.indexOf(produk)})">+</button>
-                                </div>
-                            </td>
-                            <td>Rp ${produk.harga * produk.jumlah}</td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-danger" onclick="hapusProduk(${produkData.indexOf(produk)})"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                document.getElementById('subtotal').textContent = `Rp ${hitungTotal()}`;
-                document.getElementById('total').textContent = `Rp ${hitungTotal()}`;
-            }
-        }
-
-        // Fungsi untuk menambah jumlah produk
-        function tambahJumlah(index) {
-            produkData[index].jumlah++;
-            document.getElementById('keranjang-belanja').innerHTML = '';
-            produkData.forEach(produk => {
-                document.getElementById('keranjang-belanja').innerHTML += `
-                    <tr>
-                        <td>
-                            <img src="${produk.gambar}" alt="" class="img-fluid" style="max-width: 100px;">
-                            <span class="ms-3">${produk.nama}</span>
-                        </td>
-                        <td>Rp ${produk.harga}</td>
-                        <td>
-                            <div class="input-group" style="max-width: 120px;">
-                                <button class="btn btn-outline-secondary" type="button" onclick="kurangiJumlah(${produkData.indexOf(produk)})">-</button>
-                                <input type="text" class="form-control text-center" value="${produk.jumlah}" oninput="ubahJumlah(${produkData.indexOf(produk)}, this.value)">
-                                <button class="btn btn-outline-secondary" type="button" onclick="tambahJumlah(${produkData.indexOf(produk)})">+</button>
-                            </div>
-                        </td>
-                        <td>Rp ${produk.harga * produk.jumlah}</td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-danger" onclick="hapusProduk(${produkData.indexOf(produk)})"><i class="fas fa-times"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
+            // Perbarui subtotal dan total
             document.getElementById('subtotal').textContent = `Rp ${hitungTotal()}`;
             document.getElementById('total').textContent = `Rp ${hitungTotal()}`;
         }
 
         // Fungsi untuk mengubah jumlah produk
-        function ubahJumlah(index, jumlah) {
-            if (jumlah > 0) {
-                produkData[index].jumlah = parseInt(jumlah);
-                document.getElementById('keranjang-belanja').innerHTML = '';
-                produkData.forEach(produk => {
-                    document.getElementById('keranjang-belanja').innerHTML += `
-                        <tr>
-                            <td>
-                                <img src="${produk.gambar}" alt="" class="img-fluid" style="max-width: 100px;">
-                                <span class="ms-3">${produk.nama}</span>
-                            </td>
-                            <td>Rp ${produk.harga}</td>
-                            <td>
-                                <div class="input-group" style="max-width: 120px;">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="kurangiJumlah(${produkData.indexOf(produk)})">-</button>
-                                    <input type="text" class="form-control text-center" value="${produk.jumlah}" oninput="ubahJumlah(${produkData.indexOf(produk)}, this.value)">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="tambahJumlah(${produkData.indexOf(produk)})">+</button>
-                                </div>
-                            </td>
-                            <td>Rp ${produk.harga * produk.jumlah}</td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-danger" onclick="hapusProduk(${produkData.indexOf(produk)})"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                document.getElementById('subtotal').textContent = `Rp ${hitungTotal()}`;
-                document.getElementById('total').textContent = `Rp ${hitungTotal()}`;
+        function ubahJumlah(index, delta) {
+            if (produkData[index].jumlah + delta > 0) {
+                produkData[index].jumlah += delta;
+                localStorage.setItem('produkData', JSON.stringify(produkData)); // Simpan perubahan ke Local Storage
+                renderKeranjangBelanja();
             }
         }
 
-        // Fungsi untuk meneruskan data ke halaman checkout
-        document.getElementById('checkoutButton').addEventListener('click', function() {
-            localStorage.setItem('produkData', JSON.stringify(produkData));
-        });
+        // Fungsi untuk menghapus produk dari keranjang
+        function hapusProduk(index) {
+            produkData.splice(index, 1);
+            localStorage.setItem('produkData', JSON.stringify(produkData)); // Simpan perubahan ke Local Storage
+            renderKeranjangBelanja();
+        }
+
+        // Panggil fungsi untuk menampilkan keranjang belanja ketika halaman dimuat
+        renderKeranjangBelanja();
     </script>
 </body>
 
