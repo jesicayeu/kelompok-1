@@ -114,19 +114,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const produkData = JSON.parse(localStorage.getItem('produkData'));
+            const produkData = JSON.parse(localStorage.getItem('produkData')) || []; // Ambil data produk
             let total = 0;
-            produkData.forEach(produk => {
-                document.getElementById('pesanan').innerHTML += `
+
+            // Cek apakah ada data produk
+            if (produkData.length > 0) {
+                produkData.forEach(produk => {
+                    document.getElementById('pesanan').innerHTML += `
+                        <tr>
+                            <td>${produk.nama}</td>
+                            <td class="text-end">Rp ${produk.harga * produk.jumlah}</td>
+                        </tr>
+                    `;
+                    total += produk.harga * produk.jumlah;
+                });
+                document.getElementById('subtotal').textContent = `Rp ${total}`;
+                document.getElementById('total').textContent = `Rp ${total}`;
+            } else {
+                // Jika tidak ada produk, tampilkan pesan
+                document.getElementById('pesanan').innerHTML = `
                     <tr>
-                        <td>${produk.nama}</td>
-                        <td class="text-end">Rp ${produk.harga * produk.jumlah}</td>
+                        <td colspan="2" class="text-center">Keranjang belanja kosong.</td>
                     </tr>
                 `;
-                total += produk.harga * produk.jumlah;
-            });
-            document.getElementById('subtotal').textContent = `Rp ${total}`;
-            document.getElementById('total').textContent = `Rp ${total}`;
+            }
+
+            // Hapus data produk dari localStorage setelah checkout
+            localStorage.removeItem('produkData');
         });
     </script>
 </body>
