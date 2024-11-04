@@ -61,7 +61,7 @@
                                 </tfoot>
                             </table>
                             <div class="text-end mt-4">
-                                <a href="index.html" class="btn btn-primary">PESAN SEKARANG</a>
+                                <button id="pesanSekarang" class="btn btn-primary">PESAN SEKARANG</button>
                             </div>
                         </div>
                     </div>
@@ -116,9 +116,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             const produkData = JSON.parse(localStorage.getItem('produkData')) || []; // Ambil data produk
             let total = 0;
+            let pesan = 'Pesanan Anda:%0A'; // Awal teks pesan
 
-            // Cek apakah ada data produk
             if (produkData.length > 0) {
+                produkData.forEach(produk => {
+                    pesan += `- ${produk.nama} (Rp ${produk.harga * produk.jumlah} untuk ${produk.jumlah} pcs)%0A`;
+                    total += produk.harga * produk.jumlah;
+                });
+                pesan += `%0A*Total: Rp ${total}*`; // Tambahkan total ke pesan
+
                 produkData.forEach(produk => {
                     document.getElementById('pesanan').innerHTML += `
                         <tr>
@@ -126,8 +132,8 @@
                             <td class="text-end">Rp ${produk.harga * produk.jumlah}</td>
                         </tr>
                     `;
-                    total += produk.harga * produk.jumlah;
                 });
+
                 document.getElementById('subtotal').textContent = `Rp ${total}`;
                 document.getElementById('total').textContent = `Rp ${total}`;
             } else {
@@ -138,6 +144,12 @@
                     </tr>
                 `;
             }
+
+            // Event listener untuk tombol "PESAN SEKARANG"
+            document.getElementById('pesanSekarang').addEventListener('click', function() {
+                const urlWhatsApp = `https://wa.me/6282122514346?text=${encodeURIComponent(pesan)}`;
+                window.open(urlWhatsApp, '_blank'); // Membuka tautan WhatsApp di tab baru
+            });
 
             // Hapus data produk dari localStorage setelah checkout
             localStorage.removeItem('produkData');
